@@ -383,7 +383,10 @@ function generateProfessionCards() {
                 <h4 class="programs-title">Образовательные программы:</h4>
                 <ul class="programs-list">${programsList}</ul>
             </div>
-            <button class="btn apply-btn" onclick="location.href='#'">Поступить</button>
+            <div class="card-actions">
+                <a href="profession_detail.html?id=${profession.id}" class="btn apply-btn">Подробнее</a>
+                <a href="#" class="btn btn-primary" onclick="event.preventDefault(); alert('Переход на страницу поступления для ${profession.title.replace(/"/g, '')}');">Поступить</a>
+            </div>
         `;
         
         container.appendChild(card);
@@ -464,7 +467,10 @@ function filterProfessions() {
                     <h4 class="programs-title">Образовательные программы:</h4>
                     <ul class="programs-list">${programsList}</ul>
                 </div>
-                <button class="btn apply-btn" onclick="location.href='#'">Поступить</button>
+                <div class="card-actions">
+                    <a href="profession_detail.html?id=${profession.id}" class="btn apply-btn">Подробнее</a>
+                    <a href="#" class="btn btn-primary" onclick="event.preventDefault(); alert('Переход на страницу поступления для ${profession.title.replace(/"/g, '')}');">Поступить</a>
+                </div>
             `;
             
             container.appendChild(card);

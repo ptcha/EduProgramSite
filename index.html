@@ -92,6 +92,11 @@
         </div>
     </section>
 
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <a href="#" class="btn btn-back">↑ Наверх</a>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -107,5 +112,20 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Smooth scroll for back-to-top button
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTop = document.querySelector('.back-to-top a');
+            if (backToTop) {
+                backToTop.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>

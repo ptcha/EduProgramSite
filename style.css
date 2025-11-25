@@ -6,8 +6,8 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f8fafc;
-    color: #1e293b;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+    color: #334155;
     line-height: 1.6;
 }
 
@@ -19,32 +19,33 @@ body {
 
 /* Header */
 .header {
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.5);
 }
 
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #2563eb;
+    color: #4f46e5;
     text-align: center;
 }
 
 /* Filter Section */
 .filter-section {
-    background-color: #e0f2fe;
+    background-color: rgba(239, 246, 255, 0.7);
     padding: 2rem 0;
 }
 
 .filter-container {
     background-color: white;
-    border-radius: 12px;
+    border-radius: 20px;
     padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 20px rgba(148, 163, 184, 0.15);
 }
 
 .filter-title {
@@ -89,7 +90,7 @@ body {
 }
 
 .btn-primary {
-    background-color: #2563eb;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
@@ -104,17 +105,19 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #1d4ed8;
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
     transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 6px 15px rgba(79, 70, 229, 0.4);
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    background: linear-gradient(135deg, #a5b4fc 0%, #818cf8 100%);
     color: white;
     padding: 4rem 0;
     text-align: center;
+    border-radius: 0 0 30px 30px;
+    box-shadow: 0 10px 25px rgba(129, 140, 248, 0.2);
 }
 
 .hero-title {
@@ -152,15 +155,15 @@ body {
 /* Profession Card */
 .profession-card {
     background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
+    box-shadow: 0 6px 16px rgba(148, 163, 184, 0.15);
     padding: 2rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .profession-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(148, 163, 184, 0.25);
 }
 
 .profession-title {
@@ -214,6 +217,13 @@ body {
     font-weight: 500;
 }
 
+.card-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+}
+
 .programs-title {
     font-weight: 600;
     margin-bottom: 0.5rem;
@@ -239,7 +249,7 @@ body {
 }
 
 .apply-btn {
-    background-color: #2563eb;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
@@ -254,14 +264,14 @@ body {
 }
 
 .apply-btn:hover {
-    background-color: #1d4ed8;
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
     transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 6px 15px rgba(79, 70, 229, 0.4);
 }
 
 .btn {
     display: inline-block;
-    background-color: #2563eb;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
@@ -274,9 +284,104 @@ body {
 }
 
 .btn:hover {
-    background-color: #1d4ed8;
+    background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
     transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 6px 15px rgba(79, 70, 229, 0.4);
+}
+
+/* Back Button */
+.btn-back {
+    background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-back:hover {
+    background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(100, 116, 139, 0.4);
+}
+
+.back-section {
+    padding: 1.5rem 0;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+/* Detail Page Styles */
+.detail-section {
+    padding: 2rem 0 4rem;
+}
+
+.detail-card {
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: 0 8px 25px rgba(148, 163, 184, 0.2);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.detail-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4f46e5;
+    margin-bottom: 1rem;
+}
+
+.detail-description {
+    font-size: 1.1rem;
+    color: #475569;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.section-subtitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 1.5rem 0 1rem;
+}
+
+.programs-container {
+    margin-top: 1.5rem;
+}
+
+.program-detail-card {
+    background-color: #f8fafc;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(148, 163, 184, 0.1);
+}
+
+.program-detail-card h4 {
+    color: #4f46e5;
+    margin-bottom: 0.75rem;
+}
+
+.program-detail-card p {
+    margin: 0.5rem 0;
+    color: #475569;
+}
+
+.detail-actions {
+    margin-top: 2rem;
+    text-align: center;
 }
 
 /* Footer */
