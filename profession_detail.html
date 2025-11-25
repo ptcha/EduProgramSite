@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детальная информация о профессии</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">ТОП-10 укрупнённых профессий</h1>
+        </div>
+    </header>
+
+    <!-- Back Button -->
+    <section class="back-section">
+        <div class="container">
+            <a href="index.html" class="btn btn-back">← Назад</a>
+        </div>
+    </section>
+
+    <!-- Detail Section -->
+    <section class="detail-section">
+        <div class="container">
+            <div id="profession-detail" class="detail-content">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        // Function to get URL parameter
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Function to display profession detail
+        function displayProfessionDetail() {
+            const professionId = getUrlParameter('id');
+            if (!professionId) {
+                document.getElementById('profession-detail').innerHTML = '<p class="no-results">Профессия не найдена</p>';
+                return;
+            }
+
+            const profession = professionsData.find(p => p.id == professionId);
+            if (!profession) {
+                document.getElementById('profession-detail').innerHTML = '<p class="no-results">Профессия не найдена</p>';
+                return;
+            }
+
+            // Create detailed view for the profession
+            const programsList = profession.programs.map(program => `
+                <div class="program-detail-card">
+                    <h4>${program.name} (${program.level})</h4>
+                    <p><strong>Код программы:</strong> ${program.code}</p>
+                    <p><strong>Квалификация:</strong> ${program.qualification}</p>
+                    <p><strong>Срок обучения:</strong> ${program.duration}</p>
+                    <p><strong>Профессиональный стандарт:</strong> ${program.profstandard}</p>
+                    <p><strong>Возможные должности:</strong> ${program.positions.join(', ')}</p>
+                    <p><strong>Федеральные округа:</strong> ${program.federalDistricts.join(', ')}</p>
+                </div>
+            `).join('');
+
+            document.getElementById('profession-detail').innerHTML = `
+                <div class="detail-card">
+                    <h2 class="detail-title">${profession.title}</h2>
+                    <div class="code-label">Коды УГС: <span class="code-value">${profession.code}</span></div>
+                    <p class="detail-description">${profession.description}</p>
+                    
+                    <h3 class="section-subtitle">Базовые категории профессий:</h3>
+                    <div class="skills-list">
+                        ${profession.categories.map(category => `<span class="skill-tag">${category}</span>`).join('')}
+                    </div>
+                    
+                    <h3 class="section-subtitle">Образовательные программы:</h3>
+                    <div class="programs-container">
+                        ${programsList}
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <a href="#" class="btn btn-primary">Поступить</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load the detail when the page is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProfessionDetail();
+        });
+    </script>
+</body>
+</html>
