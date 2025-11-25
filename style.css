@@ -148,41 +148,105 @@ body {
     color: #475569;
 }
 
-.professions-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-/* Profession Card */
-.profession-card {
+.accordion-item {
     background-color: white;
     border-radius: 30px;
     box-shadow: 0 10px 25px rgba(148, 163, 184, 0.18);
-    padding: 2.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(226, 232, 240, 0.5);
-    display: flex;
-    flex-direction: column;
+    overflow: hidden;
 }
 
-.profession-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(148, 163, 184, 0.28);
+.accordion-header {
+    padding: 1.5rem 2rem;
+    background-color: #f8fafc;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+    background-color: #e2e8f0;
+}
+
+.accordion-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.accordion-content-inner {
+    padding: 0 2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.accordion-item.open .accordion-content {
+    max-height: 1000px; /* Достаточно большая высота для содержимого */
+}
+
+.accordion-item.open .accordion-content-inner {
+    opacity: 1;
+}
+
+.accordion-item.open .accordion-icon {
+    transform: rotate(180deg);
 }
 
 .profession-title {
     font-size: 1.5rem;
     font-weight: 700;
     color: #6366f1;
+    margin: 0;
+}
+
+.program-item {
+    background-color: #f1f5f9;
+    border-radius: 20px;
+    padding: 1.25rem;
     margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(148, 163, 184, 0.1);
+    border: 1px solid rgba(226, 232, 240, 0.3);
+}
+
+.program-header {
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.program-details {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #cbd5e1;
+}
+
+.profstandard-link {
+    color: #6366f1;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.profstandard-link:hover {
+    color: #4f46e5;
 }
 
 .profession-description {
     color: #475569;
     margin-bottom: 1.5rem;
     font-size: 1rem;
-    flex: 1;
 }
 
 .code-label {
@@ -443,20 +507,24 @@ body {
         font-size: 1rem;
     }
     
-    .professions-grid {
-        grid-template-columns: 1fr;
+    .accordion-header {
+        padding: 1.25rem 1.5rem;
+    }
+    
+    .accordion-content-inner {
+        padding: 0 1.5rem 1.5rem;
     }
     
     .section-title {
         font-size: 1.75rem;
     }
     
-    .profession-card {
-        padding: 1.5rem;
-    }
-    
     .profession-title {
         font-size: 1.25rem;
+    }
+    
+    .program-item {
+        padding: 1rem;
     }
 }
 
@@ -480,5 +548,13 @@ body {
     .btn {
         width: 100%;
         text-align: center;
+    }
+    
+    .accordion-header {
+        padding: 1rem 1.25rem;
+    }
+    
+    .accordion-content-inner {
+        padding: 0 1.25rem 1.25rem;
     }
 }
