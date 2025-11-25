@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2563eb;
+    text-align: center;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Professions Section */
+.professions-section {
+    padding: 4rem 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #1e293b;
+}
+
+.professions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+/* Profession Card */
+.profession-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profession-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.profession-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2563eb;
+    margin-bottom: 1rem;
+}
+
+.profession-description {
+    color: #475569;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.skills-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1e293b;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.skill-tag {
+    background-color: #dbeafe;
+    color: #2563eb;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.programs-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1e293b;
+}
+
+.programs-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.programs-list li {
+    padding: 0.25rem 0;
+    color: #475569;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #2563eb;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background-color: #1d4ed8;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+/* Footer */
+.footer {
+    background-color: #1e293b;
+    color: white;
+    padding: 3rem 0 2rem;
+    text-align: center;
+}
+
+.copyright {
+    margin-bottom: 1rem;
+}
+
+.download-link {
+    color: #93c5fd;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.download-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .professions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .profession-card {
+        padding: 1.5rem;
+    }
+    
+    .profession-title {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .hero {
+        padding: 2.5rem 0;
+    }
+    
+    .hero-title {
+        font-size: 1.75rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
