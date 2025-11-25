@@ -353,43 +353,85 @@ const professionsData = [
 ];
 
 // Функция для генерации карточек профессий
-function generateProfessionCards() {
+function generateProfessionAccordions() {
     const container = document.getElementById('professions-container');
-    container.innerHTML = ''; // Очищаем контейнер перед добавлением новых карточек
+    container.innerHTML = ''; // Очищаем контейнер перед добавлением новых аккордеонов
     
     professionsData.forEach(profession => {
-        const card = document.createElement('div');
-        card.className = 'profession-card';
-        
-        // Создаем теги для категорий
-        const categoriesTags = profession.categories.map(category => 
-            `<span class="skill-tag">${category}</span>`
-        ).join('');
-        
-        // Создаем элементы списка для образовательных программ
-        const programsList = profession.programs.map(program => 
-            `<li><strong>${program.level}:</strong> ${program.name} (${program.code}) - ${program.qualification}. Срок: ${program.duration}. Профстандарт: ${program.profstandard}</li>`
-        ).join('');
-        
-        card.innerHTML = `
-            <h3 class="profession-title">${profession.title}</h3>
-            <div class="code-label">Коды УГС: <span class="code-value">${profession.code}</span></div>
-            <p class="profession-description">${profession.description}</p>
-            <div class="categories-section">
-                <h4 class="skills-title">Базовые категории профессий:</h4>
-                <div class="skills-list">${categoriesTags}</div>
+        const accordion = document.createElement('div');
+        accordion.className = 'accordion-item';
+        accordion.innerHTML = `
+            <div class="accordion-header">
+                <h3 class="profession-title">${profession.title}</h3>
+                <span class="accordion-icon">▼</span>
             </div>
-            <div class="programs-section">
-                <h4 class="programs-title">Образовательные программы:</h4>
-                <ul class="programs-list">${programsList}</ul>
-            </div>
-            <div class="card-actions">
-                <a href="profession_detail.html?id=${profession.id}" class="btn apply-btn">Подробнее</a>
-                <a href="#" class="btn btn-primary" onclick="event.preventDefault(); alert('Переход на страницу поступления для ${profession.title.replace(/"/g, '')}');">Поступить</a>
+            <div class="accordion-content">
+                <div class="accordion-content-inner">
+                    <div class="code-label">Коды УГС: <span class="code-value">${profession.code}</span></div>
+                    <p class="profession-description">${profession.description}</p>
+                    <div class="categories-section">
+                        <h4 class="skills-title">Базовые категории профессий:</h4>
+                        <div class="skills-list">
+                            ${profession.categories.map(category => 
+                                `<span class="skill-tag">${category}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                    <div class="programs-section">
+                        <h4 class="programs-title">Образовательные программы:</h4>
+                        <div class="programs-list">
+                            ${profession.programs.map(program => 
+                                `<div class="program-item">
+                                    <div class="program-header">
+                                        <strong>${program.level}:</strong> ${program.name} (${program.code}) - ${program.qualification}
+                                    </div>
+                                    <div class="program-details">
+                                        <p><strong>Срок обучения:</strong> ${program.duration}</p>
+                                        <p><strong>Профессиональный стандарт:</strong> 
+                                            <a href="#" class="profstandard-link" onclick="event.preventDefault(); alert('Переход к профессиональному стандарту: ${program.profstandard}');">${program.profstandard}</a>
+                                        </p>
+                                        <p><strong>Возможные должности:</strong> ${program.positions.join(', ')}</p>
+                                    </div>
+                                </div>`
+                            ).join('')}
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <a href="profession_detail.html?id=${profession.id}" class="btn apply-btn">Подробнее</a>
+                        <a href="#" class="btn btn-primary" onclick="event.preventDefault(); alert('Переход на страницу поступления для ${profession.title.replace(/"/g, '')}');">Поступить</a>
+                    </div>
+                </div>
             </div>
         `;
         
-        container.appendChild(card);
+        container.appendChild(accordion);
+    });
+    
+    // Добавляем обработчики событий для аккордеонов
+    setupAccordionEvents();
+}
+
+// Функция для настройки обработчиков событий аккордеонов
+function setupAccordionEvents() {
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+            const accordionItem = this.parentElement;
+            const isOpen = accordionItem.classList.contains('open');
+            
+            // Закрываем все аккордеоны
+            document.querySelectorAll('.accordion-item').forEach(item => {
+                item.classList.remove('open');
+                item.querySelector('.accordion-icon').textContent = '▼';
+            });
+            
+            // Если текущий аккордеон был закрыт, открываем его
+            if (!isOpen) {
+                accordionItem.classList.add('open');
+                this.querySelector('.accordion-icon').textContent = '▲';
+            }
+        });
     });
 }
 
@@ -427,13 +469,8 @@ function filterProfessions() {
         container.innerHTML = '<p class="no-results">По заданным критериям не найдено подходящих профессий</p>';
     } else {
         filteredProfessions.forEach(profession => {
-            const card = document.createElement('div');
-            card.className = 'profession-card';
-            
-            // Создаем теги для категорий
-            const categoriesTags = profession.categories.map(category => 
-                `<span class="skill-tag">${category}</span>`
-            ).join('');
+            const accordion = document.createElement('div');
+            accordion.className = 'accordion-item';
             
             // Фильтруем программы по заданным критериям
             const matchingPrograms = profession.programs.filter(program => {
@@ -450,37 +487,61 @@ function filterProfessions() {
                 return true;
             });
             
-            // Создаем элементы списка только для подходящих программ
-            const programsList = matchingPrograms.map(program => 
-                `<li><strong>${program.level}:</strong> ${program.name} (${program.code}) - ${program.qualification}. Срок: ${program.duration}. Профстандарт: ${program.profstandard}</li>`
-            ).join('');
-            
-            card.innerHTML = `
-                <h3 class="profession-title">${profession.title}</h3>
-                <div class="code-label">Коды УГС: <span class="code-value">${profession.code}</span></div>
-                <p class="profession-description">${profession.description}</p>
-                <div class="categories-section">
-                    <h4 class="skills-title">Базовые категории профессий:</h4>
-                    <div class="skills-list">${categoriesTags}</div>
+            accordion.innerHTML = `
+                <div class="accordion-header">
+                    <h3 class="profession-title">${profession.title}</h3>
+                    <span class="accordion-icon">▼</span>
                 </div>
-                <div class="programs-section">
-                    <h4 class="programs-title">Образовательные программы:</h4>
-                    <ul class="programs-list">${programsList}</ul>
-                </div>
-                <div class="card-actions">
-                    <a href="profession_detail.html?id=${profession.id}" class="btn apply-btn">Подробнее</a>
-                    <a href="#" class="btn btn-primary" onclick="event.preventDefault(); alert('Переход на страницу поступления для ${profession.title.replace(/"/g, '')}');">Поступить</a>
+                <div class="accordion-content">
+                    <div class="accordion-content-inner">
+                        <div class="code-label">Коды УГС: <span class="code-value">${profession.code}</span></div>
+                        <p class="profession-description">${profession.description}</p>
+                        <div class="categories-section">
+                            <h4 class="skills-title">Базовые категории профессий:</h4>
+                            <div class="skills-list">
+                                ${profession.categories.map(category => 
+                                    `<span class="skill-tag">${category}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+                        <div class="programs-section">
+                            <h4 class="programs-title">Образовательные программы:</h4>
+                            <div class="programs-list">
+                                ${matchingPrograms.map(program => 
+                                    `<div class="program-item">
+                                        <div class="program-header">
+                                            <strong>${program.level}:</strong> ${program.name} (${program.code}) - ${program.qualification}
+                                        </div>
+                                        <div class="program-details">
+                                            <p><strong>Срок обучения:</strong> ${program.duration}</p>
+                                            <p><strong>Профессиональный стандарт:</strong> 
+                                                <a href="#" class="profstandard-link" onclick="event.preventDefault(); alert('Переход к профессиональному стандарту: ${program.profstandard}');">${program.profstandard}</a>
+                                            </p>
+                                            <p><strong>Возможные должности:</strong> ${program.positions.join(', ')}</p>
+                                        </div>
+                                    </div>`
+                                ).join('')}
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="profession_detail.html?id=${profession.id}" class="btn apply-btn">Подробнее</a>
+                            <a href="#" class="btn btn-primary" onclick="event.preventDefault(); alert('Переход на страницу поступления для ${profession.title.replace(/"/g, '')}');">Поступить</a>
+                        </div>
+                    </div>
                 </div>
             `;
             
-            container.appendChild(card);
+            container.appendChild(accordion);
         });
+        
+        // Добавляем обработчики событий для аккордеонов
+        setupAccordionEvents();
     }
 }
 
 // Запускаем генерацию карточек после загрузки DOM
 document.addEventListener('DOMContentLoaded', function() {
-    generateProfessionCards();
+    generateProfessionAccordions();
     
     // Добавляем обработчик события для кнопки фильтрации
     document.getElementById('apply-filter').addEventListener('click', filterProfessions);
