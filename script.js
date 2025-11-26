@@ -358,6 +358,9 @@ function generateProfessionAccordions() {
     container.innerHTML = ''; // Очищаем контейнер перед добавлением новых аккордеонов
     
     professionsData.forEach(profession => {
+        // Create a short description (first 1-2 sentences)
+        const shortDescription = profession.description.split('. ').slice(0, 2).join('. ') + '.';
+        
         const accordion = document.createElement('div');
         accordion.className = 'accordion-item';
         accordion.innerHTML = `
@@ -368,7 +371,7 @@ function generateProfessionAccordions() {
             <div class="accordion-content">
                 <div class="accordion-content-inner">
                     <div class="code-label">Коды УГС: <span class="code-value">${profession.code}</span></div>
-                    <p class="profession-description">${profession.description}</p>
+                    <p class="profession-description">${shortDescription}</p>
                     <div class="categories-section">
                         <h4 class="skills-title">Базовые категории профессий:</h4>
                         <div class="skills-list">
@@ -383,14 +386,10 @@ function generateProfessionAccordions() {
                             ${profession.programs.map(program => 
                                 `<div class="program-item">
                                     <div class="program-header">
-                                        <strong>${program.level}:</strong> ${program.name} (${program.code}) - ${program.qualification}
+                                        <strong>${program.level}:</strong> ${program.name} (${program.code})
                                     </div>
                                     <div class="program-details">
-                                        <p><strong>Срок обучения:</strong> ${program.duration}</p>
-                                        <p><strong>Профессиональный стандарт:</strong> 
-                                            <a href="#" class="profstandard-link" onclick="event.preventDefault(); alert('Переход к профессиональному стандарту: ${program.profstandard}');">${program.profstandard}</a>
-                                        </p>
-                                        <p><strong>Возможные должности:</strong> ${program.positions.join(', ')}</p>
+                                        <p><strong>Квалификация:</strong> ${program.qualification}. <strong>Срок:</strong> ${program.duration}</p>
                                     </div>
                                 </div>`
                             ).join('')}
@@ -487,6 +486,9 @@ function filterProfessions() {
                 return true;
             });
             
+            // Create a short description (first 1-2 sentences)
+            const shortDescription = profession.description.split('. ').slice(0, 2).join('. ') + '.';
+            
             accordion.innerHTML = `
                 <div class="accordion-header">
                     <h3 class="profession-title">${profession.title}</h3>
@@ -495,7 +497,7 @@ function filterProfessions() {
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
                         <div class="code-label">Коды УГС: <span class="code-value">${profession.code}</span></div>
-                        <p class="profession-description">${profession.description}</p>
+                        <p class="profession-description">${shortDescription}</p>
                         <div class="categories-section">
                             <h4 class="skills-title">Базовые категории профессий:</h4>
                             <div class="skills-list">
@@ -510,14 +512,10 @@ function filterProfessions() {
                                 ${matchingPrograms.map(program => 
                                     `<div class="program-item">
                                         <div class="program-header">
-                                            <strong>${program.level}:</strong> ${program.name} (${program.code}) - ${program.qualification}
+                                            <strong>${program.level}:</strong> ${program.name} (${program.code})
                                         </div>
                                         <div class="program-details">
-                                            <p><strong>Срок обучения:</strong> ${program.duration}</p>
-                                            <p><strong>Профессиональный стандарт:</strong> 
-                                                <a href="#" class="profstandard-link" onclick="event.preventDefault(); alert('Переход к профессиональному стандарту: ${program.profstandard}');">${program.profstandard}</a>
-                                            </p>
-                                            <p><strong>Возможные должности:</strong> ${program.positions.join(', ')}</p>
+                                            <p><strong>Квалификация:</strong> ${program.qualification}. <strong>Срок:</strong> ${program.duration}</p>
                                         </div>
                                     </div>`
                                 ).join('')}
