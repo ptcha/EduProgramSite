@@ -370,29 +370,31 @@ function generateProfessionAccordions() {
             </div>
             <div class="accordion-content">
                 <div class="accordion-content-inner">
-                    <div class="code-label">Коды УГС: <span class="code-value">${profession.code}</span></div>
-                    <p class="profession-description">${shortDescription}</p>
-                    <div class="categories-section">
-                        <h4 class="skills-title">Базовые категории профессий:</h4>
-                        <div class="skills-list">
-                            ${profession.categories.map(category => 
-                                `<span class="skill-tag">${category}</span>`
-                            ).join('')}
+                    <div class="content-wrapper">
+                        <div class="code-label">Коды УГС: <span class="code-value">${profession.code}</span></div>
+                        <p class="profession-description">${shortDescription}</p>
+                        <div class="categories-section">
+                            <h4 class="skills-title">Базовые категории профессий:</h4>
+                            <div class="skills-list">
+                                ${profession.categories.map(category => 
+                                    `<span class="skill-tag">${category}</span>`
+                                ).join('')}
+                            </div>
                         </div>
-                    </div>
-                    <div class="programs-section">
-                        <h4 class="programs-title">Образовательные программы:</h4>
-                        <div class="programs-list">
-                            ${profession.programs.map(program => 
-                                `<div class="program-item">
-                                    <div class="program-header">
-                                        <strong>${program.level}:</strong> ${program.name} (${program.code})
-                                    </div>
-                                    <div class="program-details">
-                                        <p><strong>Квалификация:</strong> ${program.qualification}. <strong>Срок:</strong> ${program.duration}</p>
-                                    </div>
-                                </div>`
-                            ).join('')}
+                        <div class="programs-section">
+                            <h4 class="programs-title">Образовательные программы:</h4>
+                            <div class="programs-list">
+                                ${profession.programs.map(program => 
+                                    `<div class="program-item">
+                                        <div class="program-header">
+                                            <strong>${program.level}:</strong> ${program.name} (${program.code})
+                                        </div>
+                                        <div class="program-details">
+                                            <p><strong>Квалификация:</strong> ${program.qualification}. <strong>Срок:</strong> ${program.duration}</p>
+                                        </div>
+                                    </div>`
+                                ).join('')}
+                            </div>
                         </div>
                     </div>
                     <div class="card-actions">
@@ -496,29 +498,31 @@ function filterProfessions() {
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-content-inner">
-                        <div class="code-label">Коды УГС: <span class="code-value">${profession.code}</span></div>
-                        <p class="profession-description">${shortDescription}</p>
-                        <div class="categories-section">
-                            <h4 class="skills-title">Базовые категории профессий:</h4>
-                            <div class="skills-list">
-                                ${profession.categories.map(category => 
-                                    `<span class="skill-tag">${category}</span>`
-                                ).join('')}
+                        <div class="content-wrapper">
+                            <div class="code-label">Коды УГС: <span class="code-value">${profession.code}</span></div>
+                            <p class="profession-description">${shortDescription}</p>
+                            <div class="categories-section">
+                                <h4 class="skills-title">Базовые категории профессий:</h4>
+                                <div class="skills-list">
+                                    ${profession.categories.map(category => 
+                                        `<span class="skill-tag">${category}</span>`
+                                    ).join('')}
+                                </div>
                             </div>
-                        </div>
-                        <div class="programs-section">
-                            <h4 class="programs-title">Образовательные программы:</h4>
-                            <div class="programs-list">
-                                ${matchingPrograms.map(program => 
-                                    `<div class="program-item">
-                                        <div class="program-header">
-                                            <strong>${program.level}:</strong> ${program.name} (${program.code})
-                                        </div>
-                                        <div class="program-details">
-                                            <p><strong>Квалификация:</strong> ${program.qualification}. <strong>Срок:</strong> ${program.duration}</p>
-                                        </div>
-                                    </div>`
-                                ).join('')}
+                            <div class="programs-section">
+                                <h4 class="programs-title">Образовательные программы:</h4>
+                                <div class="programs-list">
+                                    ${matchingPrograms.map(program => 
+                                        `<div class="program-item">
+                                            <div class="program-header">
+                                                <strong>${program.level}:</strong> ${program.name} (${program.code})
+                                            </div>
+                                            <div class="program-details">
+                                                <p><strong>Квалификация:</strong> ${program.qualification}. <strong>Срок:</strong> ${program.duration}</p>
+                                            </div>
+                                        </div>`
+                                    ).join('')}
+                                </div>
                             </div>
                         </div>
                         <div class="card-actions">
