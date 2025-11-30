@@ -6,7 +6,6 @@ __pycache__/
 *.obj
 dist/
 build/
-target/
 *.class
 *.exe
 *.dll
@@ -31,8 +30,6 @@ venv/
 # Editors
 .vscode/
 .idea/
-*.swp
-*.swo
 
 # System files
 .DS_Store
@@ -44,60 +41,14 @@ htmlcov/
 .coverage
 
 # Python specific
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-.venv/
-venv/
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.log
-.git/
+.mypy_cache/
+.pytest_cache/
 
-# Node.js specific
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-node_modules/
-dist/
-build/
-.nyc_output
-coverage/
-.nyc_output/
-.coverage/
-.coverage.*
-
-# Java specific
-*.class
-*.jar
-*.war
-*.ear
-*.tar.gz
+# Java/Gradle
 target/
 .gradle/
-build/
 
-# C/C++ specific
-*.o
-*.a
-*.so
-*.dll
-*.exe
-*.out
-*.obj
-
-# Compression files
+# Compressed files
 *.zip
 *.gz
 *.tar
